@@ -1,0 +1,52 @@
+# This script is part of the tgutils CPrAN plugin for Praat.
+# The latest version is available through CPrAN or at
+# <http://cpran.net/plugins/tgutils>
+#
+# The tgutils plugin is free software: you can redistribute it
+# and/or modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation, either
+# version 3 of the License, or (at your option) any later version.
+#
+# The tgutils plugin is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with tgutils. If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright 2014, 2015 Jose Joaquin Atria
+
+#! ~~~ params
+#! in:
+#!   .tier: >
+#!     The index of the tier to query
+#!   .start: >
+#!     The start of the range to process, in seconds
+#!   .end: >
+#!     The end of the range to process, in seconds
+#! out:
+#!   .return: >
+#!     The number of intervals in the specified range. If the tier is not a
+#!     interval tier, this variable will be set to `undefined`.
+#! selection:
+#!   in:
+#!     textgrid: 1
+#! ~~~
+#!
+procedure countIntervalsInRange (.tier, .start, .end)
+  .tg = selected()
+  .is_interval = Is interval tier: .tier
+  .return = undefined
+
+  if .end = 0
+    .end = Get total duration
+  endif
+
+  if .is_interval
+    .part = Extract part: .start, .end, 1
+    .return = Get number of intervals: .tier
+    removeObject: .part
+  endif
+  selectObject: .tg
+endproc

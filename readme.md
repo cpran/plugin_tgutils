@@ -6,7 +6,7 @@ Description
 
 This plugin defines a set of TextGrid utilities:
 
-* Count points in range
+* Count points and intervals in range
 * Find labels from beginning or end
 * Equalize tier durations
 * Explode TextGrid intervals
