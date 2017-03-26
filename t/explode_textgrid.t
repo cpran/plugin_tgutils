@@ -1,4 +1,4 @@
-include ../../plugin_tap/procedures/simple.proc
+include ../../plugin_tap/procedures/more.proc
 include ../procedures/find_label.proc
 
 @plan: 3
@@ -16,16 +16,20 @@ selectObject: textgrid
 intervals = Get number of intervals: word_tier
 runScript: preferencesDirectory$ +
   ... "/plugin_tgutils/scripts/explode_textgrid.praat", word_tier, "no"
-@ok_formula: "numberOfSelected(""TextGrid"") = intervals",
+
+@is: numberOfSelected("TextGrid"), intervals,
   ... "explode textgrid"
+
 Remove
 
 selectObject: sound, textgrid
 runScript: preferencesDirectory$ +
   ... "/plugin_tgutils/scripts/explode_textgrid.praat", word_tier, "no"
-@ok_formula: "numberOfSelected(""TextGrid"") = intervals and " +
-  ...        "numberOfSelected(""Sound"") = intervals",
-  ... "explode textgrid and sound"
+
+test = numberOfSelected("TextGrid") == intervals and
+  ...  numberOfSelected("Sound")    == intervals
+@is_true: test, "explode textgrid and sound"
+
 Remove
 
 removeObject: sound, textgrid, synth

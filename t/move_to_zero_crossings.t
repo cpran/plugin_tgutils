@@ -67,7 +67,7 @@ procedure check_crossings: .tier
 
     selectObject: .sound
     .zero = Get nearest zero crossing: 1, .time
-    @diag: "  " + string$(.time) + " ~ " + string$(.zero)
+    # @diag: "  " + string$(.time) + " ~ " + string$(.zero)
     if .zero != .time
       .return = 0
     endif
