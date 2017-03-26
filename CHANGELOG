@@ -1,4 +1,8 @@
 - next: # unreleased
+  - New:
+    * Added procedure for counting intervals (thanks @rolandomunoz!)
+  - Changes:
+    * Tests more systematically use procedures in tap/more
 - v0.0.12:
   - Fix:
     * Better detection of final intervals whem moving boundaries
