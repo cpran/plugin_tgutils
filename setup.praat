@@ -45,3 +45,5 @@ Add action command: "TextGrid", 1, "Sound",     1, "", 0, "Move boundaries to ze
 Add action command: "TextGrid", 1, "Sound",     1, "", 0, "Extract labels...",                    "",                 0, "scripts/extract_labels.praat"
 Add action command: "TextGrid", 1, "LongSound", 1, "", 0, "Extract labels...",                    "",                 0, "scripts/extract_labels.praat"
 Add action command: "TextGrid", 0, "",          0, "", 0, "To non-overlapping intervals",         "",                 0, "scripts/to_non-overlapping_intervals.praat"
+
+Add action command: "TextGrid", 0, "DurationTier", 1, "", 0, "Apply to TextGrid", "", 0, "scripts/apply_duration_tier.praat"
