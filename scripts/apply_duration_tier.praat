@@ -50,52 +50,55 @@ for i to total_textgrids
   original_duration = Get total duration
 
   selectObject: duration_tier
-  target_duration   = Get target duration: original_start, original_end
-  target_start      = original_start
-  target_end        = original_start + target_duration
+  has_points      = Get number of points
+  if has_points
+    target_duration   = Get target duration: original_start, original_end
+    target_start      = original_start
+    target_end        = original_start + target_duration
 
-  time_difference   = target_duration - original_duration
+    time_difference   = target_duration - original_duration
 
-  selectObject: result[i]
-  Scale times to: target_start, target_end
-
-  for tier to do("Get number of tiers")
     selectObject: result[i]
-    is_interval = Is interval tier: tier
-    if is_interval
-      item$ = "interval"
-      time_query$ = "Get starting point..."
-    else
-      item$ = "point"
-      time_query$ = "Get time of point..."
-    endif
+    Scale times to: target_start, target_end
 
-    items = do("Get number of " + item$ + "s...", tier)
-
-    for j from 0 to items - 1
-      item = items - j
-
-      selectObject: textgrid[i]
-      old_time = do(time_query$, tier, item)
-      label$ = do$("Get label of " + item$ + "...", tier, item)
-
-      selectObject: duration_tier
-      new_time = Get target duration: original_start, old_time
-
+    for tier to do("Get number of tiers")
       selectObject: result[i]
+      is_interval = Is interval tier: tier
       if is_interval
-        if item > 1
-          Set interval text: tier, item, ""
-          Remove left boundary: tier, item
-          Insert boundary: tier, new_time
-          Set interval text: tier, item, label$
-        endif
+        item$ = "interval"
+        time_query$ = "Get starting point..."
       else
-        Remove point: tier, item
-        nocheck Insert point: tier, item, new_time
-        Set point label: tier, item, label$
+        item$ = "point"
+        time_query$ = "Get time of point..."
       endif
-    endfor
+
+      items = do("Get number of " + item$ + "s...", tier)
+
+      for j from 0 to items - 1
+        item = items - j
+
+        selectObject: textgrid[i]
+        old_time = do(time_query$, tier, item)
+        label$ = do$("Get label of " + item$ + "...", tier, item)
+
+        selectObject: duration_tier
+        new_time = Get target duration: original_start, old_time
+
+        selectObject: result[i]
+        if is_interval
+          if item > 1
+            Set interval text: tier, item, ""
+            Remove left boundary: tier, item
+            Insert boundary: tier, new_time
+            Set interval text: tier, item, label$
+          endif
+        else
+          Remove point: tier, item
+          nocheck Insert point: tier, item, new_time
+          Set point label: tier, item, label$
+        endif
+      endfor
+    endif
   endfor
 endfor
 
