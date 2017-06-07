@@ -1,7 +1,7 @@
 ---
 Plugin: tgutils
 Homepage: https://gitlab.com/cpran/plugin_tgutils
-Version: 0.0.12
+Version: 0.0.13
 Maintainer: José Joaquín Atria <jjatria@gmail.com>
 Depends:
   praat: 5.0.0+
