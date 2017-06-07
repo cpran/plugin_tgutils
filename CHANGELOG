@@ -1,6 +1,7 @@
 - next: # unreleased
   - New:
     * Added procedure for counting intervals (thanks @rolandomunoz!)
+    * Added a script to apply DurationTier changes to a TextGrid
   - Changes:
     * Tests more systematically use procedures in tap/more
 - v0.0.12:
