@@ -1,4 +1,8 @@
 - next: # unreleased
+- v0.0.14:
+  - Fix:
+    * Applying an empty DurationTier to a TextGrid does nothing,
+      instead of dying
 - v0.0.13:
   - New:
     * Added procedure for counting intervals (thanks @rolandomunoz!)
