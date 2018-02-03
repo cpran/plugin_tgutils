@@ -1,4 +1,7 @@
 - next: # unreleased
+- v0.0.15:
+  - Fix:
+    - Tests pass under 6.0.36 by removing deprecated command parameters
 - v0.0.14:
   - Fix:
     * Applying an empty DurationTier to a TextGrid does nothing,
