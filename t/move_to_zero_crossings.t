@@ -3,7 +3,15 @@ include ../procedures/move_to_zero_crossings.proc
 
 @plan: 5
 
-synth = Create SpeechSynthesizer: "English", "default"
+if praatVersion >= 6036
+  synth_language$ = "English (Great Britain)"
+  synth_voice$ = "Male1"
+else
+  synth_language$ = "English"
+  synth_voice$ = "default"
+endif
+
+synth = Create SpeechSynthesizer: synth_language$, synth_voice$
 To Sound: "This is some text", "yes"
 
 sound    = selected("Sound")

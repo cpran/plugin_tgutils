@@ -3,8 +3,16 @@ include ../procedures/find_label.proc
 
 @plan: 35
 
+if praatVersion >= 6036
+  synth_language$ = "English (Great Britain)"
+  synth_voice$ = "Male1"
+else
+  synth_language$ = "English"
+  synth_voice$ = "default"
+endif
+
+synth = Create SpeechSynthesizer: synth_language$, synth_voice$
 tgutils$ = preferencesDirectory$ + "/plugin_tgutils/scripts/"
-synth = Create SpeechSynthesizer: "English", "default"
 To Sound: "This is some text", "yes"
 
 word_tier    = 3

@@ -3,7 +3,15 @@ include ../procedures/count_intervals_in_range.proc
 
 @plan: 4
 
-synth = Create SpeechSynthesizer: "English", "default"
+if praatVersion >= 6036
+  synth_language$ = "English (Great Britain)"
+  synth_voice$ = "Male1"
+else
+  synth_language$ = "English"
+  synth_voice$ = "default"
+endif
+
+synth = Create SpeechSynthesizer: synth_language$, synth_voice$
 To Sound: "This is some text", "yes"
 
 sound    = selected("Sound")
